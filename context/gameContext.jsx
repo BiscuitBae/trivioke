@@ -125,6 +125,10 @@ const GameContextProvider = ({ children }) => {
     }
   };
 
+  const clearCurrentTeams = () => {
+    setTeamCards([]);
+  };
+
   const increaseScore = () => {
     for (let i = 0; i < teams.length; i++) {
       if (currTeam === teams[i]) {
@@ -215,6 +219,7 @@ const GameContextProvider = ({ children }) => {
     nextTeam,
     getTeams,
     handleTeams,
+    clearCurrentTeams,
     increaseScore,
     halveChoices,
     addSongsToState,
