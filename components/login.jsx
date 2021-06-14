@@ -9,7 +9,7 @@ import clientId from '../src/googleConfig';
 const Login = () => {
   const [showLoginButton, setShowLoginButton] = useState(true);
   const { loginUser, logoutUser, isLoggedIn } = useContext(UserContext);
-  const { getTeams } = useContext(GameContext);
+  const { getTeams, clearCurrentTeams } = useContext(GameContext);
 
   const onLoginSuccess = (res) => {
     if (!isLoggedIn) {
@@ -23,6 +23,7 @@ const Login = () => {
   const onSignoutSuccess = () => {
     setShowLoginButton(true);
     logoutUser();
+    clearCurrentTeams();
   };
 
   return (
