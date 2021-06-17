@@ -52,7 +52,47 @@ npm install
 
 - Attempt to use an Amazon EC2 Instance with Ubuntu 20.04.
 
+## Category Selection
+The function getCategories in gameContext will return all available categories to play as from the opentriviadb api.
 
+The categories are then rendered within the filter component as Dropdown Items in a Dropdown Button from react-bootstrap
+
+## True/False Questions
+The function boolRequest will send a request to the endpoint in the backend which will make an request to the opentriviaDB API with the parameter type set to boolean.
+
+This endpoint sends the boolean question to the front end.
+
+The boolRequest function will set the current question saved in state to be a true/false question.
+## Random Button
+The function random in gameContext will make a request to either the multiple choice or boolean endpoint with a random category. 
+
+This sets the current Question to be from a random category in either multiple choice or true false format.
+
+## Team Selector:
+- # setTeamDropDown:
+setTeamDropdown within components/Teams.jsx sets the amount of teams for a game. 
+It is rendered within the Dropdown Button react-bootstrap component and is within the 
+Teams.jsx return statement. This function takes in an integer from 2 incrementing to the 
+specified number.Clicking a presented number renders that number of dropdown forms for 
+the user to input team names and those team names to be stored within state and sent to the
+Teams table in trivioke database. The number selected by the user also utilizes the
+setTeamNumber function of the teamNumber state to pass the selected integer along to
+listTeamForms to render the correct number of forms and keep track of those forms' 
+state.
+- # listTeamForms:
+Maps across the user-specified integer return (n) forms. setTeamNames is used here
+to correlate team names with team number and this information is passed back to state
+use useEffect with the function setTeams and setCurrTeams. 
+If a user does not fill in all of the team names and starts the game. The blank team does 
+not appear in the game/state/database thus it is possible to play with only one player if 
+desired. However a sweet alert is called if a user presses the enter key without filling out
+the entire form preventing them from navigating to further pages without a set state.
+# Countdown:
+- # CountdownCircleTimer:
+the 'react-countdown-circle-timer' dependency is implemented to facilitate the timer component
+present on the game. It takes the (timer) set in state from load via gameContext and executes
+a timer of that length. When the timer runs out the user is redirected to the /video page holding
+the randomized karaoke song.
 ## Teams, Leaderboard
 - Teams are saved to db on game start with team names from user input in Teams component. 
 - User MUST be logged in to save teams as each team entry has a foreign key that is the users
@@ -67,7 +107,7 @@ npm install
     their corresponding routes are in server/index.js and funtions that interact with the teams db table
     can be found in server/helpers
 
-## database 
+## Database 
 - db connection found in db/mysql.js
 - using mysql2/promises and connection pool to allow the use of promises and async/await when 
     interacting with db
